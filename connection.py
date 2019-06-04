@@ -3,7 +3,7 @@ import socketio as socket
 import math
 import copy
 
-# agoritm taked and dated from http://dhconnelly.com/paip-python/docs/paip/othello.html#section-14
+# algorithm taked and adapted from http://dhconnelly.com/paip-python/docs/paip/othello.html#section-14
 mainsocket = socket.Client()
 ip = 'http://192.168.1.6'
 #samip
@@ -223,4 +223,4 @@ def on_finish(data):
         "player_turn_id":data['player_turn_id']
     })
 
-mainsocket.connect(host)
+# mainsocket.connect(host)
