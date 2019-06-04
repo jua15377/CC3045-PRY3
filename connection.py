@@ -2,9 +2,8 @@ import sys
 import socketio as socket
 import math
 import copy
-from random import randint,choice
 
-
+# agoritm taked and dated from http://dhconnelly.com/paip-python/docs/paip/othello.html#section-14
 mainsocket = socket.Client()
 ip = 'http://192.168.1.6'
 #samip
@@ -18,11 +17,15 @@ tournament_id = '12'
 N: int = 8
 
 def validatePosition(x, y):
+    '''
+    validates if postion is valid
+    '''
     if 0 <= x <= 7 and 0 <= y <= 7:
         return True
     return False
 
 
+#function adapted from https://inventwithpython.com/chapter15.html
 def is_valid_move(board, player_turn_id, x, y):
     global N
     index = x * N + y
@@ -202,10 +205,6 @@ def on_ready(data):
     print("About to move. Board:\n")
     print(human_board(data['board']))
     print("\nRequesting move...")
-    # movement = play(data)
-    # while not validatePosition(movement, data['board']):
-    #     movement = play(data)
-    # print('move to emit:', movement)
     mainsocket.emit('play', {
         "player_turn_id":data['player_turn_id'],
         "tournament_id":tournament_id,
